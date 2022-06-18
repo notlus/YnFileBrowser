@@ -1,0 +1,19 @@
+//
+//  YnFileBrowser.xcconfig
+//  YnFileBrowser
+//
+//  Created by Jeffrey Sulton on 6/18/22.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+APP_BUNDLE_IDENTIFIER = com.notlus.YnFileBrowser
+
+HELPER_BUNDLE_IDENTIFIER = $(APP_BUNDLE_IDENTIFIER).Helper
+
+APP_VERSION = 1.0.0
+
+MACOSX_DEPLOYMENT_TARGET = 10.14.4
+
+ENABLE_HARDENED_RUNTIME = YES
