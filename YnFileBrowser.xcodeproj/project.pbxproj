@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		377B0C4A285E7DFC00E89F6D /* com.notlus.YnFileBrowser.Helper in CopyFiles */ = {isa = PBXBuildFile; fileRef = 377B0C41285E7A9900E89F6D /* com.notlus.YnFileBrowser.Helper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		379B1D0A28615E7A0065C6AD /* YnFileBrowserShared in Frameworks */ = {isa = PBXBuildFile; productRef = 379B1D0928615E7A0065C6AD /* YnFileBrowserShared */; };
+		379B1D1028615EBC0065C6AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379B1D0F28615EBC0065C6AD /* main.swift */; };
+		379B1D1128617A310065C6AD /* FileBrowserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379B1D0B28615EAB0065C6AD /* FileBrowserService.swift */; };
 		37D226A0285D902C00A2AC7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D2269F285D902C00A2AC7D /* AppDelegate.swift */; };
 		37D226A2285D902C00A2AC7D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D226A1285D902C00A2AC7D /* MainViewController.swift */; };
 		37D226A4285D902C00A2AC7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37D226A3285D902C00A2AC7D /* Assets.xcassets */; };
@@ -18,12 +21,22 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		377B0C3F285E7A9900E89F6D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		377B0C49285E7DDA00E89F6D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = Contents/Library/LaunchServices;
 			dstSubfolderSpec = 1;
 			files = (
+				377B0C4A285E7DFC00E89F6D /* com.notlus.YnFileBrowser.Helper in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -31,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		377B0C39285E727F00E89F6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		377B0C41285E7A9900E89F6D /* com.notlus.YnFileBrowser.Helper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = com.notlus.YnFileBrowser.Helper; sourceTree = BUILT_PRODUCTS_DIR; };
 		377B0C48285E7BC000E89F6D /* YnFileBrowser.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = YnFileBrowser.xcconfig; sourceTree = "<group>"; };
 		379B1CFA285E82CA0065C6AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		379B1CFB285EAEC20065C6AD /* YnHelper.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = YnHelper.xcconfig; sourceTree = "<group>"; };
@@ -50,6 +64,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		377B0C3E285E7A9900E89F6D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				379B1D0828615E700065C6AD /* YnFileBrowserShared in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37D22699285D902C00A2AC7D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -96,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				37D2269C285D902C00A2AC7D /* YnFileBrowser.app */,
+				377B0C41285E7A9900E89F6D /* com.notlus.YnFileBrowser.Helper */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,6 +142,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		377B0C40285E7A9900E89F6D /* YnFileBrowserHelperTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 377B0C45285E7A9900E89F6D /* Build configuration list for PBXNativeTarget "YnFileBrowserHelperTool" */;
+			buildPhases = (
+				377B0C3D285E7A9900E89F6D /* Sources */,
+				377B0C3E285E7A9900E89F6D /* Frameworks */,
+				377B0C3F285E7A9900E89F6D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YnFileBrowserHelperTool;
+			packageProductDependencies = (
+				379B1D0728615E700065C6AD /* YnFileBrowserShared */,
+			);
+			productName = YnFileBrowser.Helper;
+			productReference = 377B0C41285E7A9900E89F6D /* com.notlus.YnFileBrowser.Helper */;
+			productType = "com.apple.product-type.tool";
+		};
 		37D2269B285D902C00A2AC7D /* YnFileBrowser */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37D226AB285D902C00A2AC7D /* Build configuration list for PBXNativeTarget "YnFileBrowser" */;
@@ -150,7 +193,7 @@
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
-					37D2269B285D902C00A2AC7D = {
+					377B0C40285E7A9900E89F6D = {
 						CreatedOnToolsVersion = 14.0;
 					};
 				};
@@ -169,6 +212,7 @@
 			projectRoot = "";
 			targets = (
 				37D2269B285D902C00A2AC7D /* YnFileBrowser */,
+				377B0C40285E7A9900E89F6D /* YnFileBrowserHelperTool */,
 			);
 		};
 /* End PBXProject section */
@@ -186,6 +230,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		377B0C3D285E7A9900E89F6D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				379B1D1128617A310065C6AD /* FileBrowserService.swift in Sources */,
+				379B1D1028615EBC0065C6AD /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37D22698285D902C00A2AC7D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -212,6 +265,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		377B0C46285E7A9900E89F6D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 379B1CFB285EAEC20065C6AD /* YnHelper.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q3VLQUJKF5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/YnFileBrowserHelperTool/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.notlus.YnFileBrowser.Helper;
+				PRODUCT_NAME = "$(HELPER_BUNDLE_IDENTIFIER)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		377B0C47285E7A9900E89F6D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 377B0C48285E7BC000E89F6D /* YnFileBrowser.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Q3VLQUJKF5;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/YnFileBrowserHelperTool/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.notlus.YnFileBrowser.Helper;
+				PRODUCT_NAME = "$(HELPER_BUNDLE_IDENTIFIER)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		37D226A9285D902C00A2AC7D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 377B0C48285E7BC000E89F6D /* YnFileBrowser.xcconfig */;
@@ -388,6 +469,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		377B0C45285E7A9900E89F6D /* Build configuration list for PBXNativeTarget "YnFileBrowserHelperTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				377B0C46285E7A9900E89F6D /* Debug */,
+				377B0C47285E7A9900E89F6D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		37D22697285D902C00A2AC7D /* Build configuration list for PBXProject "YnFileBrowser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -409,6 +499,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		379B1D0728615E700065C6AD /* YnFileBrowserShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = YnFileBrowserShared;
+		};
 		379B1D0928615E7A0065C6AD /* YnFileBrowserShared */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = YnFileBrowserShared;
