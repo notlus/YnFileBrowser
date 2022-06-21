@@ -12,29 +12,32 @@ public final class FileNode: NSObject, NSSecureCoding {
     public static var supportsSecureCoding: Bool = true
 
     public let url: URL
+    public var children: [FileNode]
 
-    public init(url: NSURL, children _: [FileNode]) {
+    public init(url: NSURL, children: [FileNode] = []) {
         self.url = url as URL
+        self.children = children
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+        guard let url = aDecoder.decodeObject(of: NSURL.self, forKey: "url"),
+              let children = aDecoder.decodeObject(of: [NSArray.self, FileNode.self], forKey: "children") as? [FileNode]
+        else {
+            return nil
+        }
+        self.url = url as URL
+        self.children = children
     }
 
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(url, forKey: "url")
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        guard
-            let url = aDecoder.decodeObject(of: NSURL.self, forKey: "url")
-        else {
-            return nil
-        }
-
-        self.url = url as URL
+        aCoder.encode(children, forKey: "children")
     }
 }
 
 public extension FileNode {
     override var description: String {
-        "URL: \(url)\nDirectory: \(isDirectory)\nHidden: \(isHidden)\nSize: \(fileSize)\n"
+        "URL: \(url)\nDirectory: \(isDirectory)\nHidden: \(isHidden)\nSize: \(fileSize)\nChildren: \(children.count)"
     }
 }
 
