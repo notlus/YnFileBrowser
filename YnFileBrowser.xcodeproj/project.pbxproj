@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37214BF1286219A900C188D7 /* YnFileBrowserShared in Frameworks */ = {isa = PBXBuildFile; productRef = 379B1D0728615E700065C6AD /* YnFileBrowserShared */; };
 		377B0C4A285E7DFC00E89F6D /* com.notlus.YnFileBrowser.Helper in CopyFiles */ = {isa = PBXBuildFile; fileRef = 377B0C41285E7A9900E89F6D /* com.notlus.YnFileBrowser.Helper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		379B1D0A28615E7A0065C6AD /* YnFileBrowserShared in Frameworks */ = {isa = PBXBuildFile; productRef = 379B1D0928615E7A0065C6AD /* YnFileBrowserShared */; };
 		379B1D1028615EBC0065C6AD /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379B1D0F28615EBC0065C6AD /* main.swift */; };
@@ -17,7 +18,7 @@
 		37D226A7285D902C00A2AC7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37D226A5285D902C00A2AC7D /* Main.storyboard */; };
 		37D226AF285D9E6200A2AC7D /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D226AE285D9E6200A2AC7D /* SplitViewController.swift */; };
 		37F8017F285DCDC90048000B /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F8017E285DCDC90048000B /* FilesViewController.swift */; };
-		37F80181285DCDE80048000B /* NavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F80180285DCDE80048000B /* NavigatorViewController.swift */; };
+		37F80181285DCDE80048000B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F80180285DCDE80048000B /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,7 +61,7 @@
 		37D226A8285D902C00A2AC7D /* YnFileBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YnFileBrowser.entitlements; sourceTree = "<group>"; };
 		37D226AE285D9E6200A2AC7D /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		37F8017E285DCDC90048000B /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
-		37F80180285DCDE80048000B /* NavigatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorViewController.swift; sourceTree = "<group>"; };
+		37F80180285DCDE80048000B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				379B1D0828615E700065C6AD /* YnFileBrowserShared in Frameworks */,
+				37214BF1286219A900C188D7 /* YnFileBrowserShared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +133,7 @@
 				37D226A3285D902C00A2AC7D /* Assets.xcassets */,
 				37D226A5285D902C00A2AC7D /* Main.storyboard */,
 				37F8017E285DCDC90048000B /* FilesViewController.swift */,
-				37F80180285DCDE80048000B /* NavigatorViewController.swift */,
+				37F80180285DCDE80048000B /* TableViewController.swift */,
 				37D226A8285D902C00A2AC7D /* YnFileBrowser.entitlements */,
 				37D226AE285D9E6200A2AC7D /* SplitViewController.swift */,
 			);
@@ -244,7 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37D226A2285D902C00A2AC7D /* MainViewController.swift in Sources */,
-				37F80181285DCDE80048000B /* NavigatorViewController.swift in Sources */,
+				37F80181285DCDE80048000B /* TableViewController.swift in Sources */,
 				37D226A0285D902C00A2AC7D /* AppDelegate.swift in Sources */,
 				37F8017F285DCDC90048000B /* FilesViewController.swift in Sources */,
 				37D226AF285D9E6200A2AC7D /* SplitViewController.swift in Sources */,
