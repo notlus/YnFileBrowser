@@ -388,6 +388,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		379B1D0928615E7A0065C6AD /* YnFileBrowserShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = YnFileBrowserShared;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 37D22694285D902C00A2AC7D /* Project object */;
 }
