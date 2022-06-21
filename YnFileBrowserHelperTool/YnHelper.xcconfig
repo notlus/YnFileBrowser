@@ -1,0 +1,16 @@
+//
+//  YnHelper.xcconfig
+//  YnFileBrowser
+//
+//  Created by Jeffrey Sulton on 6/18/22.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "YnFileBrowser.xcconfig"
+
+// Linker flags for embedding an Info.plist and launchd plist into a helper tool.
+OTHER_LDFLAGS = -sectcreate __TEXT __info_plist YnFileBrowserHelperTool/Info.plist -sectcreate __TEXT __launchd_plist YnFileBrowserHelperTool/com.notlus.YnFileBrowser.Helper.plist
+
+SKIP_INSTALL = YES
