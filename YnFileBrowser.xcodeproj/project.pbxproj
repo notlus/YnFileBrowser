@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3703D9ED285E645500A688D6 /* FileNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3703D9EC285E645500A688D6 /* FileNode.swift */; };
 		37D226A0285D902C00A2AC7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D2269F285D902C00A2AC7D /* AppDelegate.swift */; };
 		37D226A2285D902C00A2AC7D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D226A1285D902C00A2AC7D /* MainViewController.swift */; };
 		37D226A4285D902C00A2AC7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37D226A3285D902C00A2AC7D /* Assets.xcassets */; };
@@ -30,7 +29,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3703D9EC285E645500A688D6 /* FileNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileNode.swift; sourceTree = "<group>"; };
 		377B0C48285E7BC000E89F6D /* YnFileBrowser.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = YnFileBrowser.xcconfig; sourceTree = "<group>"; };
 		379B1CFA285E82CA0065C6AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		37D2269C285D902C00A2AC7D /* YnFileBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YnFileBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,7 +90,6 @@
 				37F80180285DCDE80048000B /* NavigatorViewController.swift */,
 				37D226A8285D902C00A2AC7D /* YnFileBrowser.entitlements */,
 				37D226AE285D9E6200A2AC7D /* SplitViewController.swift */,
-				3703D9EC285E645500A688D6 /* FileNode.swift */,
 			);
 			path = YnFileBrowser;
 			sourceTree = "<group>";
@@ -175,7 +172,6 @@
 				37D226A0285D902C00A2AC7D /* AppDelegate.swift in Sources */,
 				37F8017F285DCDC90048000B /* FilesViewController.swift in Sources */,
 				37D226AF285D9E6200A2AC7D /* SplitViewController.swift in Sources */,
-				3703D9ED285E645500A688D6 /* FileNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
