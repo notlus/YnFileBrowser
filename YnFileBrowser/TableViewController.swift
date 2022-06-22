@@ -12,7 +12,7 @@ class ViewModel {
     let root: FileNode
 
     var fileName: String {
-        root.url.absoluteString
+        root.url.lastPathComponent
     }
 
     init() {
@@ -53,7 +53,7 @@ extension TableViewController: NSTableViewDataSource {
         } else {
             // Fallback on earlier versions
         }
-        cellView.textField?.stringValue = viewModel.root.children[row].url.absoluteString
+        cellView.textField?.stringValue = viewModel.root.children[row].url.lastPathComponent
 
         return cellView
     }
