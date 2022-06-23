@@ -1,35 +1,14 @@
-//
-//  NavigatorViewController.swift
-//  YnFileBrowser
-//
-//  Created by Jeffrey Sulton on 6/18/22.
-//
-
 import Cocoa
-import YnFileBrowserShared
-
-class ViewModel {
-    let root: FileNode
-
-    var fileName: String {
-        root.url.lastPathComponent
-    }
-
-    init() {
-        let url = NSURL(string: "/usr/local/bin")!
-
-        let c1 = FileNode(url: NSURL(string: "/usr/local/bin/vimr")!, children: [])
-        root = FileNode(url: url, children: [c1])
-    }
-}
 
 class TableViewController: NSViewController {
     @IBOutlet var tableView: NSTableView!
 
-    private let viewModel: ViewModel = ViewModel()
+    private var viewModel: AppViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        viewModel = splitViewController.viewModel
     }
 }
 
@@ -42,18 +21,9 @@ extension TableViewController: NSTableViewDataSource {
         guard let cellView = tableView.makeView(
             withIdentifier: tableColumn!.identifier,
             owner: self) as? NSTableCellView else { return nil }
-        
-        // TODO: Add image for pre macOS 11
-        if #available(macOS 11.0, *) {
-            if let image = NSImage(
-                systemSymbolName: "folder.fill",
-                accessibilityDescription: "Folder image") {
-                cellView.imageView?.image = image
-            }
-        } else {
-            // Fallback on earlier versions
-        }
+
         cellView.textField?.stringValue = viewModel.root.children[row].url.lastPathComponent
+        cellView.imageView?.image = viewModel.root.children[row].icon
 
         return cellView
     }
@@ -62,10 +32,8 @@ extension TableViewController: NSTableViewDataSource {
 extension TableViewController: NSTableViewDelegate {
     func tableViewSelectionDidChange(_: Notification) {
         guard tableView.selectedRow != -1 else { return }
-        guard let splitVC = parent as? NSSplitViewController else { return }
 
-//        if let filesViewController = splitVC.children[1] as? FilesViewController {
-//            filesViewController.imageSelected(name: viewModel.root.children[tableView.selectedRow])
-//        }
+        guard let splitViewController = parent as? SplitViewController else { return }
+        splitViewController.handleSelectionChange(for: viewModel.root.children[tableView.selectedRow])
     }
 }
