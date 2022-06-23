@@ -46,12 +46,12 @@
 	<string></string>
 	<key>NSMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
 	<key>SMPrivilegedExecutables</key>
 	<dict>
 		<key>com.notlus.YnFileBrowser.Helper</key>
-		<string>anchor apple generic and identifier &quot;com.notlus.YnFileBrowser.Helper&quot; and certificate leaf[subject.OU] = &quot;5ZAFQ7A6G8&quot;</string>
+		<string>identifier "com.notlus.YnFileBrowser.Helper" and anchor apple generic and certificate leaf[subject.CN] = "Apple Development: Jeffrey Sulton (5ZAFQ7A6G8)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
 	</dict>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
 </dict>
 </plist>

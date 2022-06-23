@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37214BF1286219A900C188D7 /* YnFileBrowserShared in Frameworks */ = {isa = PBXBuildFile; productRef = 379B1D0728615E700065C6AD /* YnFileBrowserShared */; };
+		374D05662864CA9500FAA922 /* AuthorizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374D05652864CA9500FAA922 /* AuthorizationHelper.swift */; };
 		375954552863CE4400B5FE59 /* FileCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375954532863CE4400B5FE59 /* FileCollectionViewItem.swift */; };
 		375954562863CE4400B5FE59 /* FileCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 375954542863CE4400B5FE59 /* FileCollectionViewItem.xib */; };
 		377B0C4A285E7DFC00E89F6D /* com.notlus.YnFileBrowser.Helper in CopyFiles */ = {isa = PBXBuildFile; fileRef = 377B0C41285E7A9900E89F6D /* com.notlus.YnFileBrowser.Helper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -16,6 +17,7 @@
 		379B1D1128617A310065C6AD /* FileBrowserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379B1D0B28615EAB0065C6AD /* FileBrowserService.swift */; };
 		37B4F69C2862E37000AB3E76 /* FileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B4F69B2862E37000AB3E76 /* FileDetailsViewController.swift */; };
 		37BC2F4528636DF7009D1E04 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BC2F4428636DF7009D1E04 /* AppViewModel.swift */; };
+		37BC2F4728639E10009D1E04 /* FileBrowserClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BC2F4628639E10009D1E04 /* FileBrowserClient.swift */; };
 		37BC2F492863A587009D1E04 /* FileCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BC2F482863A587009D1E04 /* FileCollectionViewController.swift */; };
 		37D226A0285D902C00A2AC7D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D2269F285D902C00A2AC7D /* AppDelegate.swift */; };
 		37D226A4285D902C00A2AC7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37D226A3285D902C00A2AC7D /* Assets.xcassets */; };
@@ -48,6 +50,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		374D0564286430B400FAA922 /* uninstall.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = uninstall.sh; sourceTree = SOURCE_ROOT; };
+		374D05652864CA9500FAA922 /* AuthorizationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationHelper.swift; sourceTree = "<group>"; };
 		375954532863CE4400B5FE59 /* FileCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCollectionViewItem.swift; sourceTree = "<group>"; };
 		375954542863CE4400B5FE59 /* FileCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileCollectionViewItem.xib; sourceTree = "<group>"; };
 		377B0C39285E727F00E89F6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,6 +104,7 @@
 				379B1CFC285EB2230065C6AD /* com.notlus.YnFileBrowser.Helper.plist */,
 				377B0C39285E727F00E89F6D /* Info.plist */,
 				379B1D0F28615EBC0065C6AD /* main.swift */,
+				374D0564286430B400FAA922 /* uninstall.sh */,
 			);
 			path = YnFileBrowserHelperTool;
 			sourceTree = "<group>";
@@ -135,6 +140,7 @@
 		37D2269E285D902C00A2AC7D /* YnFileBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				374D05652864CA9500FAA922 /* AuthorizationHelper.swift */,
 				375954542863CE4400B5FE59 /* FileCollectionViewItem.xib */,
 				375954532863CE4400B5FE59 /* FileCollectionViewItem.swift */,
 				379B1CFA285E82CA0065C6AD /* Info.plist */,
@@ -263,6 +269,7 @@
 				37BC2F4528636DF7009D1E04 /* AppViewModel.swift in Sources */,
 				37B4F69C2862E37000AB3E76 /* FileDetailsViewController.swift in Sources */,
 				375954552863CE4400B5FE59 /* FileCollectionViewItem.swift in Sources */,
+				374D05662864CA9500FAA922 /* AuthorizationHelper.swift in Sources */,
 				37F8017F285DCDC90048000B /* DetailViewController.swift in Sources */,
 				37D226AF285D9E6200A2AC7D /* SplitViewController.swift in Sources */,
 			);

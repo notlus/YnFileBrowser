@@ -1,34 +1,30 @@
-//
-//  AppDelegate.swift
-//  YnFileBrowser
-//
-//  Created by Jeffrey Sulton on 6/17/22.
-//
-
 import Cocoa
+import Security
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    
-
-
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+    func applicationDidFinishLaunching(_: Notification) {
+        do {
+            let authHelper = try AuthorizationHelper()
+            if !authHelper.isHelperInstalled() {
+                NSLog("Installing helper tool")
+                try authHelper.installHelper()
+                NSLog("Helper tool installed successfully")
+            }
+            else {
+                NSLog("Helper tool already installed")
+            }
+        }
+        catch {
+            NSLog("Failed to install helper tool: \(error)")
+        }
     }
 
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-    
-    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+    func applicationShouldTerminateAfterLastWindowClosed(_: NSApplication) -> Bool {
         true
     }
 
-    func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
+    func applicationSupportsSecureRestorableState(_: NSApplication) -> Bool {
         return true
     }
-
-
 }
-

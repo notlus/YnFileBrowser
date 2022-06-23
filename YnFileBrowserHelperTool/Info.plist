@@ -4,7 +4,15 @@
 <dict>
 	<key>CFBundleVersion</key>
 	<string>1.0.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.notlus.YnFileBrowser.Helper</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>SMAuthorizedClients</key>
+	<array>
+		<string>identifier &quot;com.notlus.YnFileBrowser&quot; and anchor apple generic and certificate leaf[subject.CN] = &quot;Apple Development: Jeffrey Sulton (5ZAFQ7A6G8)&quot; and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
+	</array>
 </dict>
 </plist>

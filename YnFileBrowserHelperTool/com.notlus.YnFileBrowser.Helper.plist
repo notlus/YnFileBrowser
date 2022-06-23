@@ -6,7 +6,7 @@
 	<string>com.notlus.YnFileBrowser.Helper</string>
 	<key>MachServices</key>
 	<dict>
-		<key>com.robotsandpencils.XcodesApp.Helper</key>
+		<key>com.notlus.YnFileBrowser.Helper</key>
 		<true/>
 	</dict>
 	<key>Program</key>
