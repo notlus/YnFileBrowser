@@ -50,7 +50,6 @@ struct AuthorizationHelper {
                     &rights,
                     nil,
                     flags,
-//                    [.extendRights, .interactionAllowed],
                     nil)
             }
         }
@@ -58,7 +57,6 @@ struct AuthorizationHelper {
 
     ///  Install the privileged helper tool as a launch daemon.
     func installHelper() throws {
-
         let osStatus = authorizationCopyRight(
             name: kSMRightBlessPrivilegedHelper)
         
