@@ -1,10 +1,4 @@
-//
-//  FileNode.swift
-//  YnFileBrowser
-//
-//  Created by Jeffrey Sulton on 6/18/22.
-//
-
+import Cocoa
 import Foundation
 
 /// A type that represents a file or folder
@@ -33,6 +27,15 @@ public final class FileNode: NSObject, NSSecureCoding {
         aCoder.encode(url, forKey: "url")
         aCoder.encode(children, forKey: "children")
     }
+
+    public func getFileContents() -> NSImage? {
+        let image = NSImage(contentsOf: url)
+        return image
+    }
+
+    public func getIcon() -> NSImage? {
+        icon
+    }
 }
 
 public extension FileNode {
@@ -42,9 +45,17 @@ public extension FileNode {
 }
 
 public extension FileNode {
-    // TODO: Implement
-    var kind: Bool {
-        false
+    var fileType: String {
+        var fileType = ""
+        if url.isFileURL {
+            print("file URL")
+        }
+
+        print(url.standardizedFileURL)
+        if let resource = try? url.resourceValues(forKeys: [.typeIdentifierKey]) {
+            fileType = resource.typeIdentifier!
+        }
+        return fileType
     }
 
     // TODO: Determine how bundles/packages should be treated.
@@ -64,6 +75,23 @@ public extension FileNode {
         }
 
         return isHidden
+    }
+
+    var isImage: Bool {
+        var isImage = false
+        if let resource = try? url.resourceValues(forKeys: [.typeIdentifierKey]),
+           let typeIdentifier = resource.typeIdentifier {
+            if let imageTypes = CGImageSourceCopyTypeIdentifiers() as? [String] {
+                for imageType in imageTypes {
+                    if UTTypeConformsTo(typeIdentifier as CFString, imageType as CFString) {
+                        isImage = true
+                        break
+                    }
+                }
+            }
+        }
+        
+        return isImage
     }
 
     var fileSize: String {
@@ -95,5 +123,24 @@ public extension FileNode {
         }
 
         return modificationDate
+    }
+
+    var icon: NSImage {
+        var icon: NSImage!
+        if let iconValues = try? url.resourceValues(forKeys: [.customIconKey, .effectiveIconKey]) {
+            if let customIcon = iconValues.customIcon {
+                icon = customIcon
+            }
+            else if let effectiveIcon = iconValues.effectiveIcon as? NSImage {
+                icon = effectiveIcon
+            }
+        }
+        else {
+            let osType = isDirectory ? kGenericFolderIcon : kGenericDocumentIcon
+            let iconType = NSFileTypeForHFSTypeCode(OSType(osType))
+            icon = NSWorkspace.shared.icon(forFileType: iconType!)
+        }
+        
+        return icon
     }
 }
