@@ -5,7 +5,9 @@ class FileBrowserClient {
     var root: FileNode?
 
     var connection: NSXPCConnection {
-        let connection = NSXPCConnection(machServiceName: "com.notlus.YnFileBrowser.Helper", options: .privileged)
+        let connection = NSXPCConnection(
+            machServiceName: "com.notlus.YnFileBrowser.Helper",
+            options: .privileged)
         let interface = NSXPCInterface(with: FileBrowsing.self)
 
         let fileBrowserTypes = NSSet(array: [NSURL.self, NSArray.self, NSMutableArray.self, FileNode.self, NSString.self]) as Set
@@ -38,7 +40,7 @@ class FileBrowserClient {
             self.root = FileNode(url: NSURL(string: "/dev/null")!)
         } as? FileBrowsing
 
-        let url = URL(string: path)!
+        let url = URL(fileURLWithPath: path)
         service?.getFileMetadata(withURL: url as NSURL, reply: { fileNode in
             guard let fileNode = fileNode else {
                 print("Failed to get file node")
