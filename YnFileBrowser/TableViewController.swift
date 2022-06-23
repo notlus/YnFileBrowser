@@ -8,6 +8,10 @@ class TableViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        guard let splitViewController = parent as? SplitViewController else {
+            fatalError("Failed to get parent split view")
+        }
+        
         viewModel = splitViewController.viewModel
     }
 }
