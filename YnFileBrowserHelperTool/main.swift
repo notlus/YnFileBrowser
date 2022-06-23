@@ -1,14 +1,9 @@
-//
-//  main.swift
-//  ynXPC
-//
-//  Created by Jeffrey Sulton on 5/17/22.
-//
-
 import Foundation
 
+let fileBrowserService = FileBrowserService()
 
-let fileBrowserService = FileBrowserService() //FileBrowserServiceDelegate()
-let listener = NSXPCListener.service()
+let listener = NSXPCListener(machServiceName: "com.notlus.YnFileBrowser.Helper")
 listener.delegate = fileBrowserService
 listener.resume()
+
+RunLoop.main.run()
