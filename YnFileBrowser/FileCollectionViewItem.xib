@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21179.7"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="FileCollectionViewItem" customModule="YnFileBrowser" customModuleProvider="target">
+            <connections>
+                <outlet property="imageView" destination="Vi7-br-KNR" id="UTJ-KX-ooj"/>
+                <outlet property="textField" destination="4FP-dH-l0R" id="vjj-Fs-ylZ"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView identifier="FileCollectionViewItem" id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4FP-dH-l0R">
+                    <rect key="frame" x="184" y="20" width="113" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" id="wzi-6G-S5A">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vi7-br-KNR">
+                    <rect key="frame" x="215" y="111" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="B2r-Ys-g9Y"/>
+                        <constraint firstAttribute="height" constant="44" id="gvb-Ua-UmX"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" image="NSFolder" id="LIj-MG-5ve"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Vi7-br-KNR" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="GsK-Ve-vGX"/>
+                <constraint firstAttribute="bottom" secondItem="4FP-dH-l0R" secondAttribute="bottom" constant="20" symbolic="YES" id="GzR-FI-gCl"/>
+                <constraint firstItem="4FP-dH-l0R" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="186" id="Ica-3d-Pgo"/>
+                <constraint firstAttribute="trailing" secondItem="4FP-dH-l0R" secondAttribute="trailing" constant="185" id="OxU-xx-Tsg"/>
+                <constraint firstItem="Vi7-br-KNR" firstAttribute="centerY" secondItem="Hz6-mo-xeY" secondAttribute="centerY" id="keX-8E-moH"/>
+                <constraint firstItem="4FP-dH-l0R" firstAttribute="top" secondItem="Vi7-br-KNR" secondAttribute="bottom" constant="78" id="scp-db-Ia7"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+        <collectionViewItem id="I7C-j0-ppl" customClass="FileCollectionViewItem" customModule="YnFileBrowser" customModuleProvider="target"/>
+    </objects>
+    <resources>
+        <image name="NSFolder" width="32" height="32"/>
+    </resources>
+</document>
