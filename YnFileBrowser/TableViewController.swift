@@ -1,8 +1,8 @@
 import Cocoa
+import YnFileBrowserShared
 
 class TableViewController: NSViewController {
     @IBOutlet var tableView: NSTableView!
-
     private var viewModel: AppViewModel!
 
     override func viewDidLoad() {
@@ -11,7 +11,7 @@ class TableViewController: NSViewController {
         guard let splitViewController = parent as? SplitViewController else {
             fatalError("Failed to get parent split view")
         }
-        
+
         viewModel = splitViewController.viewModel
     }
 }
@@ -38,6 +38,18 @@ extension TableViewController: NSTableViewDelegate {
         guard tableView.selectedRow != -1 else { return }
 
         guard let splitViewController = parent as? SplitViewController else { return }
-        splitViewController.handleSelectionChange(for: viewModel.root.children[tableView.selectedRow])
+        let fileNode = viewModel.root.children[tableView.selectedRow]
+
+        if fileNode.isDirectory, fileNode.children.isEmpty {
+            // Fetch children
+            viewModel.fileBrowser.getFileMetadata(path: fileNode.url.path, completion: { childNode in
+                fileNode.children = childNode!.children
+
+                splitViewController.handleSelectionChange(for: fileNode, from: self)
+            })
+        }
+        else {
+            splitViewController.handleSelectionChange(for: fileNode, from: self)
+        }
     }
 }
