@@ -1,84 +1,96 @@
 import Cocoa
 import Foundation
 
-/// A type that represents a file or folder
 public final class FileNode: NSObject, NSSecureCoding {
-    public static var supportsSecureCoding: Bool = true
+    public static var supportsSecureCoding = true
 
-    public let url: URL
-    public var children: [FileNode]
+    public var url: URL
+    public var children: [FileNode] = []
+    public var isDirectory: Bool = false
+    public var isHidden: Bool = false
+    public var isImage: Bool = false
+    public var fileSize: String = ""
+    public var creationDate: Date?
+    public var modificationDate: Date?
+    public var icon: NSImage?
+    public var fileType: String = ""
 
-    public init(url: NSURL, children: [FileNode] = []) {
-        self.url = url as URL
-        self.children = children
+    public init(url: URL) {
+        self.url = url
+
+        super.init()
+        initializeFromURL(url)
     }
 
     public required init?(coder aDecoder: NSCoder) {
         guard let url = aDecoder.decodeObject(of: NSURL.self, forKey: "url"),
-              let children = aDecoder.decodeObject(of: [NSArray.self, FileNode.self], forKey: "children") as? [FileNode]
+              let children = aDecoder.decodeObject(of: [NSArray.self, FileNode.self], forKey: "children") as? [FileNode],
+              let isDirectory = aDecoder.decodeObject(of: NSNumber.self, forKey: "isDirectory") as? Bool,
+              let isHidden = aDecoder.decodeObject(of: NSNumber.self, forKey: "isHidden") as? Bool,
+              let isImage = aDecoder.decodeObject(of: NSNumber.self, forKey: "isImage") as? Bool,
+              let fileSize = aDecoder.decodeObject(of: NSString.self, forKey: "fileSize") as? String,
+              let creationDate = aDecoder.decodeObject(of: NSDate.self, forKey: "creationDate") as? Date,
+              let modificationDate = aDecoder.decodeObject(of: NSDate.self, forKey: "modificationDate") as? Date,
+              let icon = aDecoder.decodeObject(of: NSImage.self, forKey: "icon"),
+              let fileType = aDecoder.decodeObject(of: NSString.self, forKey: "fileType") as? String
         else {
             return nil
         }
+
         self.url = url as URL
         self.children = children
+        self.isDirectory = isDirectory
+        self.isHidden = isHidden
+        self.isImage = isImage
+        self.fileSize = fileSize
+        self.creationDate = creationDate
+        self.modificationDate = modificationDate
+        self.icon = icon
+        self.fileType = fileType
     }
 
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(url, forKey: "url")
         aCoder.encode(children, forKey: "children")
-    }
-
-    public func getFileContents() -> NSImage? {
-        let image = NSImage(contentsOf: url)
-        return image
-    }
-
-    public func getIcon() -> NSImage? {
-        icon
-    }
-}
-
-public extension FileNode {
-    override var description: String {
-        "URL: \(url)\nDirectory: \(isDirectory)\nHidden: \(isHidden)\nSize: \(fileSize)\nChildren: \(children.count)"
+        aCoder.encode(isDirectory, forKey: "isDirectory")
+        aCoder.encode(isHidden, forKey: "isHidden")
+        aCoder.encode(isImage, forKey: "isImage")
+        aCoder.encode(fileSize, forKey: "fileSize")
+        aCoder.encode(creationDate, forKey: "creationDate")
+        aCoder.encode(modificationDate, forKey: "modificationDate")
+        aCoder.encode(icon, forKey: "icon")
+        aCoder.encode(fileType, forKey: "fileType")
     }
 }
 
-public extension FileNode {
-    var fileType: String {
-        var fileType = ""
-        if url.isFileURL {
-            print("file URL")
-        }
-
-        print(url.standardizedFileURL)
+extension FileNode {
+    func initializeFromURL(_ url: URL) {
+        // File type
         if let resource = try? url.resourceValues(forKeys: [.typeIdentifierKey]) {
-            fileType = resource.typeIdentifier!
-        }
-        return fileType
-    }
-
-    // TODO: Determine how bundles/packages should be treated.
-    var isDirectory: Bool {
-        guard let directory = try? url.resourceValues(forKeys: [.isDirectoryKey]),
-              let isDirectory = directory.isDirectory else {
-            return false
+            fileType = resource.typeIdentifier ?? ""
         }
 
-        return isDirectory
-    }
-
-    var isHidden: Bool {
-        guard let hiddenResource = try? url.resourceValues(forKeys: [.isHiddenKey]),
-              let isHidden = hiddenResource.isHidden else {
-            return false
+        // Directory
+        // TODO: Determine how bundles/packages should be treated.
+        if let directory = try? url.resourceValues(forKeys: [.isDirectoryKey]),
+           let isDirectory = directory.isDirectory {
+            self.isDirectory = isDirectory
+        }
+        else {
+            isDirectory = false
         }
 
-        return isHidden
-    }
+        // Hidden
+        if let hiddenResource = try? url.resourceValues(forKeys: [.isHiddenKey]),
+           let isHidden = hiddenResource.isHidden {
+            self.isHidden = isHidden
+        }
+        else {
+            isHidden = false
+        }
 
-    var isImage: Bool {
-        var isImage = false
+        // Image
+        isImage = false
         if let resource = try? url.resourceValues(forKeys: [.typeIdentifierKey]),
            let typeIdentifier = resource.typeIdentifier {
             if let imageTypes = CGImageSourceCopyTypeIdentifiers() as? [String] {
@@ -90,12 +102,9 @@ public extension FileNode {
                 }
             }
         }
-        
-        return isImage
-    }
 
-    var fileSize: String {
-        var fileSize = "-"
+        // File size
+        fileSize = "-"
         if let sizeResource = try? url.resourceValues(forKeys: [.totalFileAllocatedSizeKey]) {
             if let allocatedSize = sizeResource.totalFileAllocatedSize {
                 let formattedNumberStr = ByteCountFormatter.string(fromByteCount: Int64(allocatedSize), countStyle: .file)
@@ -104,29 +113,17 @@ public extension FileNode {
             }
         }
 
-        return fileSize
-    }
-
-    var creationDate: Date? {
-        var creationDate: Date?
+        // Creation date
         if let fileCreationDateResource = try? url.resourceValues(forKeys: [.creationDateKey]) {
             creationDate = fileCreationDateResource.creationDate
         }
 
-        return creationDate
-    }
-
-    var modificationDate: Date? {
-        var modificationDate: Date?
+        // Modified date
         if let modDateResource = try? url.resourceValues(forKeys: [.contentModificationDateKey]) {
             modificationDate = modDateResource.contentModificationDate
         }
 
-        return modificationDate
-    }
-
-    var icon: NSImage {
-        var icon: NSImage!
+        // Icon
         if let iconValues = try? url.resourceValues(forKeys: [.customIconKey, .effectiveIconKey]) {
             if let customIcon = iconValues.customIcon {
                 icon = customIcon
@@ -140,7 +137,11 @@ public extension FileNode {
             let iconType = NSFileTypeForHFSTypeCode(OSType(osType))
             icon = NSWorkspace.shared.icon(forFileType: iconType!)
         }
-        
-        return icon
+    }
+}
+
+public extension FileNode {
+    override var description: String {
+        "URL: \(url)\nDirectory: \(isDirectory)\nHidden: \(isHidden)\nSize: \(fileSize)\nChildren: \(children.count)"
     }
 }
