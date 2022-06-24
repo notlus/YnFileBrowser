@@ -51,8 +51,5 @@ extension FileCollectionViewController: NSCollectionViewDataSource, NSCollection
                 self.delegate.handleSelectionChange(for: selectedFile, from: self)
             })
         }
-        else {
-            delegate.handleSelectionChange(for: selectedFile, from: self)
-        }
     }
 }
