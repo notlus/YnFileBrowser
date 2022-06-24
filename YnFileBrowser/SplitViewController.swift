@@ -34,7 +34,22 @@ class SplitViewController: NSSplitViewController {
             // Remove existing child
             detailViewController.removeChild(at: 0)
             detailViewController.view.subviews[0].removeFromSuperview()
+
+        do {
+            let authHelper = try AuthorizationHelper()
+            if !authHelper.isHelperInstalled() {
+                NSLog("Installing helper tool")
+                try authHelper.installHelper()
+                NSLog("Helper tool installed successfully")
+            }
+            else {
+                NSLog("Helper tool already installed")
+            }
         }
+        catch {
+            NSLog("Failed to install helper tool: \(error)")
+        }
+    }
 
         if fileNode.isImage {
             addChildToDetailViewController(imageViewController)
