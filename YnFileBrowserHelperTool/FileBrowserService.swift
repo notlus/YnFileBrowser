@@ -6,7 +6,7 @@ class FileBrowserService: NSObject, FileBrowsing {
         reply(getChildren(for: fileNode))
     }
 
-    func getFileMetadata(withURL url: NSURL, reply: @escaping (FileNode?) -> Void) {
+    func getFileMetadata(withURL url: URL, reply: @escaping (FileNode?) -> Void) {
         let fileNode = FileNode(url: url)
         let children = getChildren(for: fileNode)
         fileNode.children = children
@@ -35,12 +35,17 @@ class FileBrowserService: NSObject, FileBrowsing {
             at: fileNode.url as URL,
             includingPropertiesForKeys: nil) else {
             // Get immediate children
-            NSLog("Failed to open URL:", fileNode.url as NSURL)
+            NSLog("Failed to open URL: \(fileNode.url)")
             return []
         }
 
-        let children = contents.map { FileNode(url: $0 as NSURL, children: []) }
+        let children = contents.map { FileNode(url: $0) }
         return children
+    }
+    
+    func getContents(of fileNode: FileNode, reply: @escaping (NSData?) -> Void) {
+        let fileData = NSData(contentsOf: fileNode.url)
+        reply(fileData)
     }
 }
 
