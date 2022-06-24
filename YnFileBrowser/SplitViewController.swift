@@ -113,7 +113,7 @@ class SplitViewController: NSSplitViewController {
     @objc func openFolder(_: AnyObject) {
         let dialog = NSOpenPanel()
 
-        dialog.title = "Choose a starting folder| Yn File Browser"
+        dialog.message = "Choose a starting folder | Yn File Browser"
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false
         dialog.allowsMultipleSelection = false
