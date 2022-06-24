@@ -97,15 +97,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		371A3C8728661FC1004D7DEF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				375954542863CE4400B5FE59 /* FileCollectionViewItem.xib */,
+				379B1CFA285E82CA0065C6AD /* Info.plist */,
+				37D226A3285D902C00A2AC7D /* Assets.xcassets */,
+				37D226A5285D902C00A2AC7D /* Main.storyboard */,
+				37D226A8285D902C00A2AC7D /* YnFileBrowser.entitlements */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		371A3C8828662029004D7DEF /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				375954532863CE4400B5FE59 /* FileCollectionViewItem.swift */,
+				37F8017E285DCDC90048000B /* ImageViewController.swift */,
+				37B4F69B2862E37000AB3E76 /* FileDetailsViewController.swift */,
+				37BC2F482863A587009D1E04 /* FileCollectionViewController.swift */,
+			);
+			name = Detail;
+			sourceTree = "<group>";
+		};
+		371A3C8928662098004D7DEF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				379B1CFB285EAEC20065C6AD /* YnHelper.xcconfig */,
+				379B1CFC285EB2230065C6AD /* com.notlus.YnFileBrowser.Helper.plist */,
+				377B0C39285E727F00E89F6D /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		377B0C42285E7A9900E89F6D /* YnFileBrowserHelperTool */ = {
 			isa = PBXGroup;
 			children = (
 				379B1D0B28615EAB0065C6AD /* FileBrowserService.swift */,
-				379B1CFB285EAEC20065C6AD /* YnHelper.xcconfig */,
-				379B1CFC285EB2230065C6AD /* com.notlus.YnFileBrowser.Helper.plist */,
-				377B0C39285E727F00E89F6D /* Info.plist */,
 				379B1D0F28615EBC0065C6AD /* main.swift */,
 				374D0564286430B400FAA922 /* uninstall.sh */,
+				371A3C8928662098004D7DEF /* Resources */,
 			);
 			path = YnFileBrowserHelperTool;
 			sourceTree = "<group>";
@@ -142,20 +173,13 @@
 			isa = PBXGroup;
 			children = (
 				374D05652864CA9500FAA922 /* AuthorizationHelper.swift */,
-				375954542863CE4400B5FE59 /* FileCollectionViewItem.xib */,
-				375954532863CE4400B5FE59 /* FileCollectionViewItem.swift */,
-				379B1CFA285E82CA0065C6AD /* Info.plist */,
 				37D2269F285D902C00A2AC7D /* AppDelegate.swift */,
-				37D226A3285D902C00A2AC7D /* Assets.xcassets */,
-				37D226A5285D902C00A2AC7D /* Main.storyboard */,
-				37F8017E285DCDC90048000B /* ImageViewController.swift */,
 				37F80180285DCDE80048000B /* TableViewController.swift */,
-				37D226A8285D902C00A2AC7D /* YnFileBrowser.entitlements */,
 				37D226AE285D9E6200A2AC7D /* SplitViewController.swift */,
-				37B4F69B2862E37000AB3E76 /* FileDetailsViewController.swift */,
 				37BC2F4428636DF7009D1E04 /* AppViewModel.swift */,
 				37BC2F4628639E10009D1E04 /* FileBrowserClient.swift */,
-				37BC2F482863A587009D1E04 /* FileCollectionViewController.swift */,
+				371A3C8828662029004D7DEF /* Detail */,
+				371A3C8728661FC1004D7DEF /* Resources */,
 			);
 			path = YnFileBrowser;
 			sourceTree = "<group>";
