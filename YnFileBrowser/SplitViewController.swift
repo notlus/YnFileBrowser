@@ -20,21 +20,6 @@ class SplitViewController: NSSplitViewController {
     }
 
     override func viewDidLoad() {
-        viewModel = AppViewModel(splitViewController: self)
-        super.viewDidLoad()
-
-        imageViewController = storyboard!.instantiateController(
-            withIdentifier: "ImageViewController") as? ImageViewController
-
-        fileMetadataViewController = storyboard!.instantiateController(
-            withIdentifier: "MetadataViewController") as? FileDetailsViewController
-
-        fileCollectionViewController = storyboard!.instantiateController(
-            withIdentifier: "FileCollectionViewController") as? FileCollectionViewController
-
-        fileCollectionViewController.delegate = self
-        fileCollectionViewController.viewModel = viewModel
-
         do {
             let authHelper = try AuthorizationHelper()
             if !authHelper.isHelperInstalled() {
@@ -49,6 +34,21 @@ class SplitViewController: NSSplitViewController {
         catch {
             NSLog("Failed to install helper tool: \(error)")
         }
+        
+        viewModel = AppViewModel(splitViewController: self)
+        super.viewDidLoad()
+
+        imageViewController = storyboard!.instantiateController(
+            withIdentifier: "ImageViewController") as? ImageViewController
+
+        fileMetadataViewController = storyboard!.instantiateController(
+            withIdentifier: "MetadataViewController") as? FileDetailsViewController
+
+        fileCollectionViewController = storyboard!.instantiateController(
+            withIdentifier: "FileCollectionViewController") as? FileCollectionViewController
+
+        fileCollectionViewController.delegate = self
+        fileCollectionViewController.viewModel = viewModel
     }
 
     override func viewWillAppear() {
