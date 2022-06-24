@@ -23,7 +23,7 @@
 		37D226A4285D902C00A2AC7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37D226A3285D902C00A2AC7D /* Assets.xcassets */; };
 		37D226A7285D902C00A2AC7D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37D226A5285D902C00A2AC7D /* Main.storyboard */; };
 		37D226AF285D9E6200A2AC7D /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D226AE285D9E6200A2AC7D /* SplitViewController.swift */; };
-		37F8017F285DCDC90048000B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F8017E285DCDC90048000B /* DetailViewController.swift */; };
+		37F8017F285DCDC90048000B /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F8017E285DCDC90048000B /* ImageViewController.swift */; };
 		37F80181285DCDE80048000B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F80180285DCDE80048000B /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,7 +73,7 @@
 		37D226A6285D902C00A2AC7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		37D226A8285D902C00A2AC7D /* YnFileBrowser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YnFileBrowser.entitlements; sourceTree = "<group>"; };
 		37D226AE285D9E6200A2AC7D /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
-		37F8017E285DCDC90048000B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		37F8017E285DCDC90048000B /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		37F80180285DCDE80048000B /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,7 +148,7 @@
 				37D2269F285D902C00A2AC7D /* AppDelegate.swift */,
 				37D226A3285D902C00A2AC7D /* Assets.xcassets */,
 				37D226A5285D902C00A2AC7D /* Main.storyboard */,
-				37F8017E285DCDC90048000B /* DetailViewController.swift */,
+				37F8017E285DCDC90048000B /* ImageViewController.swift */,
 				37F80180285DCDE80048000B /* TableViewController.swift */,
 				37D226A8285D902C00A2AC7D /* YnFileBrowser.entitlements */,
 				37D226AE285D9E6200A2AC7D /* SplitViewController.swift */,
@@ -273,7 +273,7 @@
 				37B4F69C2862E37000AB3E76 /* FileDetailsViewController.swift in Sources */,
 				375954552863CE4400B5FE59 /* FileCollectionViewItem.swift in Sources */,
 				374D05662864CA9500FAA922 /* AuthorizationHelper.swift in Sources */,
-				37F8017F285DCDC90048000B /* DetailViewController.swift in Sources */,
+				37F8017F285DCDC90048000B /* ImageViewController.swift in Sources */,
 				37D226AF285D9E6200A2AC7D /* SplitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
