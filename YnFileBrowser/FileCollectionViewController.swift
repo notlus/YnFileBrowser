@@ -43,7 +43,6 @@ extension FileCollectionViewController: NSCollectionViewDataSource, NSCollection
         guard let indexPath = indexPaths.first else { return }
 
         let selectedFile = fileNodes[indexPath.item]
-        print("selected:", selectedFile)
         if selectedFile.isDirectory, selectedFile.children.isEmpty {
             viewModel.fileBrowser.getFileMetadata(path: selectedFile.url.path, completion: { childNode in
                 selectedFile.children = childNode!.children
