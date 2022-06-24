@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21179.7"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -170,15 +170,15 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fig-aO-uce">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <rect key="frame" x="10" y="10" width="430" height="280"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSFolder" id="QNQ-7t-rG0"/>
                             </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="fig-aO-uce" firstAttribute="top" secondItem="ThY-Dh-bis" secondAttribute="top" id="6xz-hR-AN5"/>
-                            <constraint firstAttribute="trailing" secondItem="fig-aO-uce" secondAttribute="trailing" id="Jxh-TD-E7y"/>
-                            <constraint firstAttribute="bottom" secondItem="fig-aO-uce" secondAttribute="bottom" id="sFh-dX-jrW"/>
-                            <constraint firstItem="fig-aO-uce" firstAttribute="leading" secondItem="ThY-Dh-bis" secondAttribute="leading" id="zQ4-sG-Ha5"/>
+                            <constraint firstItem="fig-aO-uce" firstAttribute="top" secondItem="ThY-Dh-bis" secondAttribute="top" constant="10" id="6xz-hR-AN5"/>
+                            <constraint firstAttribute="trailing" secondItem="fig-aO-uce" secondAttribute="trailing" constant="10" id="Jxh-TD-E7y"/>
+                            <constraint firstAttribute="bottom" secondItem="fig-aO-uce" secondAttribute="bottom" constant="10" id="sFh-dX-jrW"/>
+                            <constraint firstItem="fig-aO-uce" firstAttribute="leading" secondItem="ThY-Dh-bis" secondAttribute="leading" constant="10" id="zQ4-sG-Ha5"/>
                         </constraints>
                     </view>
                     <connections>
@@ -386,7 +386,6 @@
                         <outlet property="creationDate" destination="XjL-Yp-R1H" id="7Wq-Ry-lOa"/>
                         <outlet property="fileIcon" destination="Tej-74-wQq" id="fgr-gU-Chg"/>
                         <outlet property="fileKind" destination="9R4-Ys-eI4" id="TQ2-Lz-YfV"/>
-                        <outlet property="fileKindString" destination="9R4-Ys-eI4" id="3yo-44-qJa"/>
                         <outlet property="fileName" destination="hjm-H8-11o" id="S2Y-Ee-nO6"/>
                         <outlet property="fileSize" destination="WJe-QO-fvg" id="5IV-EF-Fhh"/>
                         <outlet property="modifiedDate" destination="VRl-AV-f4g" id="qrO-5J-swg"/>
@@ -401,17 +400,17 @@
             <objects>
                 <viewController id="gwy-oI-cWx" customClass="TableViewController" customModule="YnFileBrowser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="vUY-1D-KNr">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="288"/>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="52" horizontalPageScroll="10" verticalLineScroll="52" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqH-Es-Yv4">
-                                <rect key="frame" x="0.0" y="0.0" width="250" height="267"/>
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="242"/>
                                 <clipView key="contentView" drawsBackground="NO" id="zkB-tR-ZtO">
-                                    <rect key="frame" x="1" y="1" width="248" height="265"/>
+                                    <rect key="frame" x="1" y="1" width="248" height="240"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" multipleSelection="NO" autosaveColumns="NO" rowHeight="50" viewBased="YES" id="rZO-mE-jTp">
-                                            <rect key="frame" x="0.0" y="0.0" width="248" height="265"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="248" height="240"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -434,14 +433,15 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fKP-2i-Tme">
-                                                                    <rect key="frame" x="3" y="1" width="17" height="16"/>
+                                                                    <rect key="frame" x="3" y="-13" width="44" height="44"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="17" id="qe0-QI-q0u"/>
+                                                                        <constraint firstAttribute="height" constant="44" id="61q-3M-aH3"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="hJV-qg-Skp"/>
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSFolder" id="oRC-sr-4sa"/>
                                                                 </imageView>
                                                                 <textField verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3HI-Vq-Rv4">
-                                                                    <rect key="frame" x="25" y="1" width="96" height="16"/>
+                                                                    <rect key="frame" x="52" y="1" width="96" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="tIv-Lg-blY">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -450,10 +450,9 @@
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="fKP-2i-Tme" firstAttribute="bottom" secondItem="3HI-Vq-Rv4" secondAttribute="bottom" id="0ZT-Y5-q5E"/>
+                                                                <constraint firstItem="fKP-2i-Tme" firstAttribute="centerY" secondItem="3HI-Vq-Rv4" secondAttribute="centerY" id="0ZT-Y5-q5E"/>
                                                                 <constraint firstItem="3HI-Vq-Rv4" firstAttribute="leading" secondItem="fKP-2i-Tme" secondAttribute="trailing" constant="7" id="BV4-ds-cRW"/>
                                                                 <constraint firstItem="fKP-2i-Tme" firstAttribute="leading" secondItem="e1l-n2-1sw" secondAttribute="leading" constant="3" id="cdx-WJ-qil"/>
-                                                                <constraint firstItem="fKP-2i-Tme" firstAttribute="top" secondItem="3HI-Vq-Rv4" secondAttribute="top" id="fYU-CM-ows"/>
                                                                 <constraint firstItem="3HI-Vq-Rv4" firstAttribute="centerY" secondItem="e1l-n2-1sw" secondAttribute="centerY" id="xuv-b1-BKK"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3HI-Vq-Rv4" secondAttribute="trailing" id="yF4-Jg-4IP"/>
                                                             </constraints>
@@ -484,10 +483,10 @@
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="pqH-Es-Yv4" secondAttribute="bottom" id="EoL-Gm-rN0"/>
-                            <constraint firstAttribute="trailing" secondItem="pqH-Es-Yv4" secondAttribute="trailing" id="geB-uq-Vri"/>
-                            <constraint firstItem="pqH-Es-Yv4" firstAttribute="top" secondItem="vUY-1D-KNr" secondAttribute="top" id="jx4-5E-iFE"/>
-                            <constraint firstItem="pqH-Es-Yv4" firstAttribute="leading" secondItem="vUY-1D-KNr" secondAttribute="leading" id="yOG-4m-jze"/>
+                            <constraint firstItem="pqH-Es-Yv4" firstAttribute="top" secondItem="vUY-1D-KNr" secondAttribute="top" id="J66-Yr-r2a"/>
+                            <constraint firstItem="pqH-Es-Yv4" firstAttribute="leading" secondItem="vUY-1D-KNr" secondAttribute="leading" id="c80-JV-3Un"/>
+                            <constraint firstAttribute="trailing" secondItem="pqH-Es-Yv4" secondAttribute="trailing" id="icx-Qw-4Zh"/>
+                            <constraint firstAttribute="bottom" secondItem="pqH-Es-Yv4" secondAttribute="bottom" id="t2y-Wo-2gt"/>
                         </constraints>
                     </view>
                     <connections>
@@ -498,10 +497,10 @@
             </objects>
             <point key="canvasLocation" x="214" y="29.5"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--View Controller-->
         <scene sceneID="g3a-Fz-apB">
             <objects>
-                <viewController id="BxX-az-cQr" customClass="DetailViewController" customModule="YnFileBrowser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BxX-az-cQr" sceneMemberID="viewController">
                     <containerView key="view" id="Rxk-Ux-MyY" customClass="DetailViewContainer" customModule="YnFileBrowser" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
