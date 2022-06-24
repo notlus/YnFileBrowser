@@ -11,6 +11,10 @@ class SplitViewController: NSSplitViewController {
     var fileMetadataViewController: FileDetailsViewController!
     var fileCollectionViewController: FileCollectionViewController!
 
+    var tableViewController: TableViewController {
+        splitViewItems[0].viewController as! TableViewController
+    }
+
     var detailViewController: NSViewController {
         splitViewItems[1].viewController
     }
@@ -27,13 +31,9 @@ class SplitViewController: NSSplitViewController {
 
         fileCollectionViewController = storyboard!.instantiateController(
             withIdentifier: "FileCollectionViewController") as? FileCollectionViewController
-    }
 
-    func handleSelectionChange(for fileNode: FileNode) {
-        if !detailViewController.children.isEmpty {
-            // Remove existing child
-            detailViewController.removeChild(at: 0)
-            detailViewController.view.subviews[0].removeFromSuperview()
+        fileCollectionViewController.delegate = self
+        fileCollectionViewController.viewModel = viewModel
 
         do {
             let authHelper = try AuthorizationHelper()
@@ -51,14 +51,34 @@ class SplitViewController: NSSplitViewController {
         }
     }
 
+    override func viewWillAppear() {
+        let toolbar = NSToolbar(identifier: "toolbar")
+        toolbar.delegate = self
+        toolbar.displayMode = .iconOnly
+        toolbar.allowsUserCustomization = false
+        view.window?.toolbar = toolbar
+    }
+
+    func handleSelectionChange(for fileNode: FileNode, from source: NSViewController) {
         if fileNode.isImage {
             addChildToDetailViewController(imageViewController)
-            imageViewController.imageView.image = fileNode.getFileContents()
+            viewModel.fileBrowser.getContents(of: fileNode, completion: { data in
+                guard let data = data else {
+                    NSLog("Failed to get file data")
+                    return
+                }
+
+                self.imageViewController.imageView.image = NSImage(data: data)
+            })
         }
-        else if fileNode.isDirectory, !fileNode.children.isEmpty {
+        else if fileNode.isDirectory {
             // Show the child files and folders
             addChildToDetailViewController(fileCollectionViewController)
             fileCollectionViewController.fileNodes = fileNode.children
+            if source is FileCollectionViewController {
+                viewModel.root = fileNode
+                tableViewController.tableView.reloadData()
+            }
         }
         else {
             // Show file metadata
@@ -68,6 +88,17 @@ class SplitViewController: NSSplitViewController {
     }
 
     private func addChildToDetailViewController(_ childViewController: NSViewController) {
+        if !detailViewController.children.isEmpty {
+            let currentDetailViewController = detailViewController
+            if currentDetailViewController.children[0] == childViewController {
+                return
+            }
+
+            // Remove existing child
+            detailViewController.removeChild(at: 0)
+            detailViewController.view.subviews[0].removeFromSuperview()
+        }
+
         detailViewController.addChild(childViewController)
         detailViewController.view.addSubview(childViewController.view)
 
@@ -77,5 +108,59 @@ class SplitViewController: NSSplitViewController {
             childViewController.view.leadingAnchor.constraint(equalTo: detailViewController.view.leadingAnchor),
             childViewController.view.trailingAnchor.constraint(equalTo: detailViewController.view.trailingAnchor)
         ])
+    }
+
+    @objc func openFolder(_: AnyObject) {
+        let dialog = NSOpenPanel()
+
+        dialog.title = "Choose a starting folder| Yn File Browser"
+        dialog.showsResizeIndicator = true
+        dialog.showsHiddenFiles = false
+        dialog.allowsMultipleSelection = false
+        dialog.canChooseDirectories = true
+        dialog.canChooseFiles = false
+
+        if dialog.runModal() == NSApplication.ModalResponse.OK {
+            let result = dialog.url
+
+            if let result = result {
+                viewModel.fileBrowser.getFileMetadata(path: result.path) { fileNode in
+                    self.viewModel.root = fileNode
+                }
+            }
+        }
+    }
+}
+
+private extension NSToolbarItem.Identifier {
+    static let openFolder: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: "openFolder")
+}
+
+extension SplitViewController: NSToolbarDelegate {
+    func toolbar(_: NSToolbar,
+                 itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier,
+                 willBeInsertedIntoToolbar _: Bool) -> NSToolbarItem? {
+        let toolbarItem = NSToolbarItem(itemIdentifier: itemIdentifier)
+
+        /// Create a new NSToolbarItem, and then go through the process of setting up its attributes.
+        if itemIdentifier == NSToolbarItem.Identifier.openFolder {
+            let image = NSImage(named: NSImage.folderName)!
+
+            toolbarItem.action = #selector(openFolder)
+            toolbarItem.label = "Open"
+            toolbarItem.image = image
+        }
+
+        return toolbarItem
+    }
+
+    func toolbarDefaultItemIdentifiers(_: NSToolbar) -> [NSToolbarItem.Identifier] {
+        var toolbarItemIdentifiers = [NSToolbarItem.Identifier]()
+        toolbarItemIdentifiers.append(.openFolder)
+        return toolbarItemIdentifiers
+    }
+
+    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        return toolbarDefaultItemIdentifiers(toolbar)
     }
 }
