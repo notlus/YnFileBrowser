@@ -3,15 +3,17 @@ import YnFileBrowserShared
 
 class FileBrowserClient {
     var root: FileNode?
+    let connection: NSXPCConnection
+    let fileBrowsing: FileBrowsing?
 
-    var connection: NSXPCConnection {
-        let connection = NSXPCConnection(
+    init() {
+        connection = NSXPCConnection(
             machServiceName: "com.notlus.YnFileBrowser.Helper",
             options: .privileged)
         let interface = NSXPCInterface(with: FileBrowsing.self)
 
         let fileBrowserTypes = NSSet(array: [
-            NSURL.self, NSArray.self, NSMutableArray.self, NSData.self, FileNode.self, NSString.self
+            NSURL.self, NSArray.self, NSMutableArray.self, NSData.self, FileHandle.self, FileNode.self, NSString.self
         ]) as Set
 
         interface.setClasses(
@@ -38,19 +40,29 @@ class FileBrowserClient {
             argumentIndex: 0,
             ofReply: true)
 
+        interface.setClasses(
+            fileBrowserTypes,
+            for: #selector(FileBrowsing.getFileHandle(for:reply:)),
+            argumentIndex: 0,
+            ofReply: false)
+
+        interface.setClasses(
+            fileBrowserTypes,
+            for: #selector(FileBrowsing.getFileHandle(for:reply:)),
+            argumentIndex: 0,
+            ofReply: true)
+
         connection.remoteObjectInterface = interface
         connection.resume()
-        return connection
+
+        fileBrowsing = connection.remoteObjectProxyWithErrorHandler { error in
+            NSLog("Error: \(error.localizedDescription)")
+        } as? FileBrowsing
     }
 
     func getFileMetadata(path: String, completion: @escaping (FileNode?) -> Void) {
-        let service = connection.remoteObjectProxyWithErrorHandler { error in
-            NSLog("Error: \(error.localizedDescription)")
-            self.root = FileNode(url: URL(string: "/dev/null")!)
-        } as? FileBrowsing
-
         let url = URL(fileURLWithPath: path)
-        service?.getFileMetadata(withURL: url, reply: { fileNode in
+        fileBrowsing?.getFileMetadata(withURL: url, reply: { fileNode in
             guard let fileNode = fileNode else {
                 NSLog("Failed to get file node")
                 return
@@ -62,17 +74,31 @@ class FileBrowserClient {
         })
     }
 
-    func getContents(of fileNode: FileNode, completion: @escaping (Data?) -> Void) {
-        guard let service = connection.remoteObjectProxyWithErrorHandler({ error in
-            NSLog("Error: \(error.localizedDescription)")
-        }) as? FileBrowsing else {
-            completion(nil)
-            return
-        }
-
-        service.getContents(of: fileNode, reply: { data in
+    func getContentsOld(of fileNode: FileNode, completion: @escaping (Data?) -> Void) {
+        fileBrowsing?.getContents(of: fileNode, reply: { data in
             DispatchQueue.main.async {
                 completion(data as? Data)
+            }
+        })
+    }
+
+    func getContents(of fileNode: FileNode, completion: @escaping (Data?) -> Void) {
+        fileBrowsing?.getFileHandle(for: fileNode, reply: { fileHandle in
+            guard let fileHandle = fileHandle else {
+                return
+            }
+
+            let data = fileHandle.readDataToEndOfFile()
+            if #available(macOS 10.15, *) {
+                try? fileHandle.close()
+            }
+            else {
+                // Fallback on earlierdd versions
+                fileHandle.closeFile()
+            }
+
+            DispatchQueue.main.async {
+                completion(data)
             }
         })
     }
