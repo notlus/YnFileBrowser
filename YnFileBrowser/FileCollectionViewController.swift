@@ -3,15 +3,21 @@ import YnFileBrowserShared
 
 class FileCollectionViewController: NSViewController {
     @IBOutlet var collectionView: NSCollectionView!
+    var viewModel: AppViewModel!
+    var delegate: SplitViewController!
 
-    var fileNodes: [FileNode] = []
+    var fileNodes: [FileNode] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 }
 
-extension FileCollectionViewController: NSCollectionViewDataSource {
+extension FileCollectionViewController: NSCollectionViewDataSource, NSCollectionViewDelegate {
     func collectionView(
         _: NSCollectionView,
         numberOfItemsInSection _: Int) -> Int {
@@ -27,8 +33,25 @@ extension FileCollectionViewController: NSCollectionViewDataSource {
 
         guard let item = item as? FileCollectionViewItem else { return item }
 
-        item.imageView?.image = fileNodes[indexPath.item].getIcon()
+        item.imageView?.image = fileNodes[indexPath.item].icon
 
         return item
+    }
+
+    func collectionView(_: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        guard let indexPath = indexPaths.first else { return }
+
+        let selectedFile = fileNodes[indexPath.item]
+        print("selected:", selectedFile)
+        if selectedFile.isDirectory, selectedFile.children.isEmpty {
+            viewModel.fileBrowser.getFileMetadata(path: selectedFile.url.path, completion: { childNode in
+                selectedFile.children = childNode!.children
+
+                self.delegate.handleSelectionChange(for: selectedFile, from: self)
+            })
+        }
+        else {
+            delegate.handleSelectionChange(for: selectedFile, from: self)
+        }
     }
 }
