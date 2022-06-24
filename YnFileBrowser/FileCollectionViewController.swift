@@ -34,6 +34,7 @@ extension FileCollectionViewController: NSCollectionViewDataSource, NSCollection
         guard let item = item as? FileCollectionViewItem else { return item }
 
         item.imageView?.image = fileNodes[indexPath.item].icon
+        item.textField?.stringValue = fileNodes[indexPath.item].url.lastPathComponent
 
         return item
     }
