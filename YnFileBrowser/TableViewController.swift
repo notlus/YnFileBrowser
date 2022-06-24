@@ -14,11 +14,19 @@ class TableViewController: NSViewController {
 
         viewModel = splitViewController.viewModel
     }
+    
+    override func viewWillAppear() {
+        let homeDirectory = FileManager.default.homeDirectoryForCurrentUser.absoluteString
+        viewModel.fileBrowser.getFileMetadata(path: homeDirectory) {
+            self.viewModel.root = $0
+        }
+    }
 }
 
 extension TableViewController: NSTableViewDataSource {
     func numberOfRows(in _: NSTableView) -> Int {
-        return viewModel.root.children.count
+        guard let root = viewModel.root else { return 0 }
+        return root.children.count
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -26,8 +34,10 @@ extension TableViewController: NSTableViewDataSource {
             withIdentifier: tableColumn!.identifier,
             owner: self) as? NSTableCellView else { return nil }
 
-        cellView.textField?.stringValue = viewModel.root.children[row].url.lastPathComponent
-        cellView.imageView?.image = viewModel.root.children[row].icon
+        guard let root = viewModel.root else { return nil }
+        
+        cellView.textField?.stringValue = root.children[row].url.lastPathComponent
+        cellView.imageView?.image = root.children[row].icon
 
         return cellView
     }
@@ -36,9 +46,10 @@ extension TableViewController: NSTableViewDataSource {
 extension TableViewController: NSTableViewDelegate {
     func tableViewSelectionDidChange(_: Notification) {
         guard tableView.selectedRow != -1 else { return }
+        guard let root = viewModel.root else { return }
 
         guard let splitViewController = parent as? SplitViewController else { return }
-        let fileNode = viewModel.root.children[tableView.selectedRow]
+        let fileNode = root.children[tableView.selectedRow]
 
         if fileNode.isDirectory, fileNode.children.isEmpty {
             // Fetch children
