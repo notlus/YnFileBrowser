@@ -17,7 +17,7 @@ class FileBrowserService: NSObject, FileBrowsing {
 
     func openFileForReading(withURL url: NSURL, reply: @escaping (FileHandle?) -> Void) {
         // TODO: Is this check needed? What happens when you open a directory?
-        guard url.isFileURL, // {
+        guard url.isFileURL,
               let handle = try? FileHandle(forReadingFrom: url as URL) else {
             reply(nil)
             return
@@ -42,10 +42,19 @@ class FileBrowserService: NSObject, FileBrowsing {
         let children = contents.map { FileNode(url: $0) }
         return children
     }
-    
+
     func getContents(of fileNode: FileNode, reply: @escaping (NSData?) -> Void) {
         let fileData = NSData(contentsOf: fileNode.url)
         reply(fileData)
+    }
+
+    func getFileHandle(for fileNode: FileNode, reply: @escaping (FileHandle?) -> Void) {
+        guard !fileNode.isDirectory,
+              let handle = try? FileHandle(forReadingFrom: fileNode.url as URL) else {
+            reply(nil)
+            return
+        }
+        reply(handle)
     }
 }
 
