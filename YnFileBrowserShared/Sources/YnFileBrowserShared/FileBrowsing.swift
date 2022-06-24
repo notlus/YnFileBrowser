@@ -1,9 +1,3 @@
-//
-//  FileBrowsing.swift
-//
-//  Created by Jeffrey Sulton on 6/18/22.
-//
-
 import Foundation
 
 /// A protocol for file browsing operations.
@@ -11,21 +5,22 @@ import Foundation
 /// This protocol is implemented by the ``FileBrowserService`` XPC service. Clients use the protocol
 /// to perform file browsing operations using the XPC service.
 @objc public protocol FileBrowsing {
+    // TODO: Decide whether this is needed
     /// Get a `FileHandle` to the specified URL
     /// - Parameters:
     ///   - url: The file URL
     ///   - reply: Either a ``FileHandle`` for the requested URL, or `nil`
-    func openFileForReading(withURL url: NSURL, reply: @escaping (FileHandle?) -> Void)
+//    func openFileForReading(withURL url: URL, reply: @escaping (FileHandle?) -> Void)
 
     ///  Get the metadata for the specified URL
     /// - Parameters:
     ///   - url: The file URL
     ///   - reply: Either a ``FileNode`` or `nil`
-    func getFileMetadata(withURL url: NSURL, reply: @escaping (FileNode?) -> Void)
+    func getFileMetadata(withURL url: URL, reply: @escaping (FileNode?) -> Void)
     
-    /// Get the immediate children of the specified ``FileNode``
+    /// Get the contents of a file as data
     /// - Parameters:
-    ///   - fileNode: A `FileNode` representing a directory
-    ///   - reply: On success callback will have an array of `FileNode`s, otherwise an empty array
-    func getChildren(of fileNode: FileNode, reply: @escaping ([FileNode]) -> Void)
+    ///   - fileNode: A `FileNode` representing a file
+    ///   - reply: On success the reply callback will contain the file data or `nil`
+    func getContents(of fileNode: FileNode, reply: @escaping (NSData?) -> Void)
 }
