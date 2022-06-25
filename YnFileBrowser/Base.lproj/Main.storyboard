@@ -497,11 +497,11 @@
             </objects>
             <point key="canvasLocation" x="214" y="29.5"/>
         </scene>
-        <!--View Controller-->
+        <!--DetailViewController-->
         <scene sceneID="g3a-Fz-apB">
             <objects>
-                <viewController id="BxX-az-cQr" sceneMemberID="viewController">
-                    <containerView key="view" id="Rxk-Ux-MyY" customClass="DetailViewContainer" customModule="YnFileBrowser" customModuleProvider="target">
+                <viewController id="BxX-az-cQr" userLabel="DetailViewController" sceneMemberID="viewController">
+                    <containerView key="view" id="Rxk-Ux-MyY" userLabel="Detail View Container" customClass="DetailViewContainer" customModule="YnFileBrowser" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </containerView>
