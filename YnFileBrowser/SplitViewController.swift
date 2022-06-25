@@ -34,18 +34,21 @@ class SplitViewController: NSSplitViewController {
         catch {
             NSLog("Failed to install helper tool: \(error)")
         }
-        
+
         viewModel = AppViewModel(splitViewController: self)
         super.viewDidLoad()
 
         imageViewController = storyboard!.instantiateController(
             withIdentifier: "ImageViewController") as? ImageViewController
+        imageViewController.view.translatesAutoresizingMaskIntoConstraints = false
 
         fileMetadataViewController = storyboard!.instantiateController(
             withIdentifier: "MetadataViewController") as? FileDetailsViewController
+        fileMetadataViewController.view.translatesAutoresizingMaskIntoConstraints = false
 
         fileCollectionViewController = storyboard!.instantiateController(
             withIdentifier: "FileCollectionViewController") as? FileCollectionViewController
+        fileCollectionViewController.view.translatesAutoresizingMaskIntoConstraints = false
 
         fileCollectionViewController.delegate = self
         fileCollectionViewController.viewModel = viewModel
