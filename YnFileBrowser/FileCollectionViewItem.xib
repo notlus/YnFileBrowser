@@ -8,49 +8,44 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="FileCollectionViewItem" customModule="YnFileBrowser" customModuleProvider="target">
             <connections>
-                <outlet property="imageView" destination="Vi7-br-KNR" id="UTJ-KX-ooj"/>
-                <outlet property="textField" destination="4FP-dH-l0R" id="vjj-Fs-ylZ"/>
-                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+                <outlet property="imageView" destination="T5U-oG-LBC" id="QQJ-zi-TbH"/>
+                <outlet property="textField" destination="Zqh-jU-YJy" id="SAi-st-5aF"/>
+                <outlet property="view" destination="8Ey-am-Gf8" id="F1l-AT-vF0"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView identifier="FileCollectionViewItem" id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="481" height="70"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vi7-br-KNR">
-                    <rect key="frame" x="216" y="23" width="50" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="C2g-Ft-TXh"/>
-                        <constraint firstAttribute="width" constant="44" id="tvh-e4-B5i"/>
-                    </constraints>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" image="NSFolder" id="LIj-MG-5ve"/>
+        <collectionViewItem id="I7C-j0-ppl" customClass="FileCollectionViewItem" customModule="YnFileBrowser" customModuleProvider="target"/>
+        <stackView identifier="FileCollectionViewItem" orientation="vertical" alignment="centerX" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ey-am-Gf8">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
+            <beginningViews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T5U-oG-LBC">
+                    <rect key="frame" x="50" y="80" width="0.0" height="0.0"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="zw1-gg-tsb"/>
                 </imageView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="4FP-dH-l0R">
-                    <rect key="frame" x="220" y="5" width="41" height="16"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="cHA-zj-EWC"/>
-                    </constraints>
-                    <textFieldCell key="cell" alignment="center" title="Label" drawsBackground="YES" id="wzi-6G-S5A">
-                        <font key="font" metaFont="system"/>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="Zqh-jU-YJy">
+                    <rect key="frame" x="2" y="58" width="96" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" selectable="YES" alignment="center" title="Multiline Label" id="jE0-OT-a7N">
+                        <font key="font" usesAppearanceFont="YES"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-            </subviews>
+            </beginningViews>
             <constraints>
-                <constraint firstItem="Vi7-br-KNR" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="PpJ-tA-gvT"/>
-                <constraint firstItem="Vi7-br-KNR" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="aMs-DL-tdF"/>
-                <constraint firstItem="4FP-dH-l0R" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="e7U-aF-4a8"/>
-                <constraint firstItem="4FP-dH-l0R" firstAttribute="top" secondItem="Vi7-br-KNR" secondAttribute="bottom" constant="5" id="mXY-kT-XhM"/>
-                <constraint firstAttribute="bottom" secondItem="4FP-dH-l0R" secondAttribute="bottom" constant="5" id="yba-z6-9bu"/>
+                <constraint firstAttribute="width" constant="100" id="RyE-vp-MHR"/>
+                <constraint firstAttribute="height" constant="80" id="SjS-zb-8jK"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="201"/>
-        </customView>
-        <collectionViewItem id="I7C-j0-ppl" customClass="FileCollectionViewItem" customModule="YnFileBrowser" customModuleProvider="target"/>
+            <visibilityPriorities>
+                <integer value="1000"/>
+                <integer value="1000"/>
+            </visibilityPriorities>
+            <customSpacing>
+                <real value="3.4028234663852886e+38"/>
+                <real value="3.4028234663852886e+38"/>
+            </customSpacing>
+            <point key="canvasLocation" x="139" y="1"/>
+        </stackView>
     </objects>
-    <resources>
-        <image name="NSFolder" width="32" height="32"/>
-    </resources>
 </document>
